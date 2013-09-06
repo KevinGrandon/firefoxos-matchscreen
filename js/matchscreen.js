@@ -25,6 +25,9 @@
     },
 
     get icon() {
+      if (!this.descriptor.icons) {
+        return '';
+      }
       return this.descriptor.icons['60'];
     },
 
@@ -36,6 +39,10 @@
     },
 
     render: function() {
+      if (!this.icon) {
+        return;
+      }
+
       var appEl = document.createElement('div');
       appEl.className = 'tile';
       appEl.dataset.origin = this.app.origin;
