@@ -1,0 +1,65 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body, html {
+	height: 100%;
+	width: 100%;
+	background: #000;
+}
+
+.tile {
+	width: 30%;
+
+	background: #28424F;
+	color: #fff;
+
+	margin: 1.5%;
+	display: inline-block;
+	
+	padding: 12% 0 18%;
+	-moz-box-sizing: border-box;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.tile * {
+	pointer-events: none;
+}
+
+.tile.flipped {
+	background: #5334AC;
+}
+
+.tile.flipped .back {
+}
+
+.wrapper {
+  z-index: 1;
+}
+
+.wrapper {
+  perspective: 1000;
+}
+
+.tile {
+  transform-style: preserve-3d;
+  transition: all 0.25s linear;
+}
+
+.tile.flipped {
+  transform: rotateY(180deg);
+}
+
+.tile .front, .tile .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.tile .back {
+  display: block;
+  transform: rotateY(180deg);
+}
