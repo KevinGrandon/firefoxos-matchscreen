@@ -18,7 +18,7 @@ PRODUCTION=1 make reset-gaia
 
 3 - Enable it!
 
-Open the Settings app and navigate to Homescreens -> Matchscreen.
+Open the Settings app and navigate to Homescreens -> Matchscreen -> Change.
 
 ## Usage
 
