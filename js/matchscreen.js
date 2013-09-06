@@ -24,6 +24,10 @@
       return this.descriptor.name;
     },
 
+    get icon() {
+      return this.descriptor.icons['60'];
+    },
+
     get descriptor() {
       if (this.entryPoint) {
         return this.app.manifest.entry_points[this.entryPoint];
@@ -39,7 +43,7 @@
         appEl.dataset.entryPoint = this.entryPoint;
       }
 
-      appEl.innerHTML = '<div class="wrapper"><div class="back"><span class="text">' + this.name + '</span></div><div class="front"></div></div>';
+      appEl.innerHTML = '<div class="wrapper"><div class="back" style="background-image: url(' + this.app.origin + this.icon + ');"></div><div class="front"></div></div>';
       document.body.appendChild(appEl);
     },
 

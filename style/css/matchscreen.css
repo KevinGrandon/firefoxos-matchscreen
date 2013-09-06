@@ -16,9 +16,8 @@ body, html {
 	color: #fff;
 
 	margin: 1.5%;
+	height: 100px;
 	display: inline-block;
-	
-	padding: 12% 0 18%;
 	-moz-box-sizing: border-box;
 	text-align: center;
 	word-wrap: break-word;
@@ -30,9 +29,6 @@ body, html {
 
 .tile.flipped {
 	background: #5334AC;
-}
-
-.tile.flipped .back {
 }
 
 .wrapper {
@@ -62,4 +58,6 @@ body, html {
 .tile .back {
   display: block;
   transform: rotateY(180deg);
+  background-repeat: no-repeat;
+  background-position: center center;
 }

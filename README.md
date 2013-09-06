@@ -13,7 +13,7 @@ git clone https://github.com/KevinGrandon/firefoxos-matchscreen.git apps/matchsc
 
 2 - Reset your device to install matchscreen:
 ```
-make reset-gaia
+PRODUCTION=1 make reset-gaia
 ```
 
 3 - Enable it!
