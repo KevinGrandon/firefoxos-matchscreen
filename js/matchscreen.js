@@ -42,7 +42,7 @@
   
     // If they already have two opened tiles, return
     if( opened.length == 2 ) { return false; }
-    // Display a fact about the tile clicked on
+
     if( !container.classList.contains('flipped')) {
       container.classList.add('flipped')
       opened.push(icon)
