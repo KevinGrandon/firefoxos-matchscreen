@@ -1,6 +1,6 @@
 (function() {
 
-  var HIDDEN_ROLES = ['system', 'keyboard', 'homescreen'];
+  var iconMap = new WeakMap();
 
   function shuffleDom() {
     var divs = document.body.children;
@@ -12,109 +12,33 @@
     document.body.appendChild(frag);
   }
 
-  var icons = [];
-  function Icon(app, entryPoint) {
-    this.app = app;
-    this.entryPoint = entryPoint;
+  function renderIcon(icon) {
+    var appEl = document.createElement('div');
+    appEl.className = 'tile';
+    appEl.innerHTML = '<div class="wrapper"><div class="back" style="background-image: url(' + icon.icon + ');"></div><div class="front"></div></div>';
+
+    iconMap.set(appEl, icon);
+
+    document.body.appendChild(appEl);
   }
 
-  Icon.prototype = {
-
-    get name() {
-      return this.descriptor.name;
-    },
-
-    get icon() {
-      if (!this.descriptor.icons) {
-        return '';
-      }
-      return this.descriptor.icons['60'];
-    },
-
-    get descriptor() {
-      if (this.entryPoint) {
-        return this.app.manifest.entry_points[this.entryPoint];
-      }
-      return this.app.manifest;
-    },
-
-    render: function() {
-      if (!this.icon) {
-        return;
-      }
-
-      var appEl = document.createElement('div');
-      appEl.className = 'tile';
-      appEl.dataset.origin = this.app.origin;
-      if (this.entryPoint) {
-        appEl.dataset.entryPoint = this.entryPoint;
-      }
-
-      appEl.innerHTML = '<div class="wrapper"><div class="back" style="background-image: url(' + this.app.origin + this.icon + ');"></div><div class="front"></div></div>';
-      document.body.appendChild(appEl);
-    },
-
-    /**
-     * Renders two icons
-     */
-    addAll: function() {
-      this.render();
-      this.render();
-    },
-
-    launch: function() {
-      if (this.entryPoint) {
-        this.app.launch(this.entryPoint);
-      } else {
-        this.app.launch();
-      }
-    }
-  };
-
-  function makeIcons(app) {
-    if (HIDDEN_ROLES.indexOf(app.manifest.role) !== -1) {
-      return;
-    }
-
-    if (app.manifest.entry_points) {
-      for (var i in app.manifest.entry_points) {
-        icons.push(new Icon(app, i));
-      }
-    } else {
-      icons.push(new Icon(app));
-    }
-  }
-
-  function getIconByElement(element) {
-    var elEntryPoint = element.dataset.entryPoint;
-    var elOrigin = element.dataset.origin;
-
-    for (var i = 0, iLen = icons.length; i < iLen; i++) {
-      var icon = icons[i];
-      if (icon.entryPoint === elEntryPoint && icon.app.origin === elOrigin) {
-        return icon;
-      }
-    }
-  }
-
-  navigator.mozApps.mgmt.getAll().onsuccess = function(event) {
-    event.target.result.forEach(makeIcons);
-    icons.forEach(function(icon) {
-      icon.addAll()
+  FxosApps.all().then(icons => {
+    icons.forEach(icon => {
+      renderIcon(icon);
+      renderIcon(icon);
     });
-
     shuffleDom();
 
     // Shuffle the dom every hour
     setTimeout(shuffleDom, 60 * 60 * 1000)
-  };
+  });
 
   var opened = [];
   window.addEventListener('click', function(e) {
 
     var container = e.target
 
-    var icon = getIconByElement(container);
+    var icon = iconMap.get(container);
   
     // If they already have two opened tiles, return
     if( opened.length == 2 ) { return false; }
