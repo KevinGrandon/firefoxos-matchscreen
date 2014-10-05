@@ -1,33 +1,10 @@
 {
   "name": "Matchscreen",
-  "description": "FFOS Matchscreen",
   "launch_path": "/index.html",
   "type": "certified",
   "role": "homescreen",
-  "developer": {
-    "name": "Kevin Grandon",
-    "url": "https://github.com/kevingrandon/"
-  },
   "permissions": {
     "webapps-manage":{},
-    "systemXHR":{},
-    "settings":{ "access": "readwrite" },
-    "open-remote-window":{},
-    "storage":{},
-    "alarms": {},
-    "power":{}
-  },
-  "locales": {
-    "en-US": {
-      "name": "Matchscreen",
-      "description": "FFOS Matchscreen"
-    }
-  },
-  "default_locale": "en-US",
-  "icons": {
-    "30": "/style/icons/Blank.png"
-  },
-  "orientation": "portrait-primary",
-  "activities": {},
-  "messages": []
+    "systemXHR":{}
+  }
 }
