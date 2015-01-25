@@ -1,14 +1,14 @@
 {
   "name": "firefoxos-mozapps",
-  "homepage": "https://github.com/KevinGrandon/firefoxos-mozapps",
-  "_release": "44499cc4c1",
+  "homepage": "https://github.com/kevingrandon/firefoxos-mozapps",
+  "_release": "bc9ed7fa05",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "44499cc4c165190e64d6a6f0e500f0b861d46e3c"
+    "commit": "bc9ed7fa054722dc3da86f460bfed6874e0678d5"
   },
-  "_source": "git://github.com/KevinGrandon/firefoxos-mozapps.git",
+  "_source": "git://github.com/kevingrandon/firefoxos-mozapps.git",
   "_target": "*",
-  "_originalSource": "KevinGrandon/firefoxos-mozapps",
+  "_originalSource": "kevingrandon/firefoxos-mozapps",
   "_direct": true
 }
